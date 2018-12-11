@@ -10,6 +10,8 @@ Description: Easily access and work with Landscape Evaporative Response Index
   (LERI) data from R. This package provides utilities for downloading LERI data 
   and reading it using the raster package. More info on LERI is 
   avaiable at <https://www.esrl.noaa.gov/psd/leri/>.
+URL: https://github.com/earthlab/leri
+BugReports: https://github.com/earthlab/leri/issues
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

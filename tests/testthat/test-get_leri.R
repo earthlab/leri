@@ -88,7 +88,7 @@ test_that("make_url returns multiple urls when needed", {
 
 test_that("Single date returns a RasterLayer", {
   skip_on_cran()
-  r <- get_leri(date = "2018-10-31", product = '8 day nac')
+  r <- get_leri(date = "2018-10-31", product = '8 day nac', overwrite = TRUE)
   expect_is(r, 'RasterLayer')
   expect_equal(raster::nlayers(r), 1)
   expect_equal(names(r), "LERI_8day.nac_Oct24.Oct31_2018.nc")

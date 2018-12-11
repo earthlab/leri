@@ -1,3 +1,5 @@
+^codemeta\.json$
 ^README\.Rmd$
 ^leri\.Rproj$
 ^\.Rproj\.user$
+.circleci

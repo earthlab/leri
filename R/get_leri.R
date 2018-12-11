@@ -128,8 +128,8 @@ parse_product <- function(product) {
   if (length(product) != 1) {
     stop("The product argument must have length one, e.g., '3 month'")
   }
-  valid_products = c('1 month', '3 month', '7 month', '12 month',
-                     '8 day ac', '8 day nac')
+  valid_products <- c('1 month', '3 month', '7 month', '12 month',
+                      '8 day ac', '8 day nac')
   if (!(product %in% valid_products)) {
     stop(paste("The product argument must be one of the following:",
                paste(valid_products, collapse = ", ")))
@@ -168,8 +168,9 @@ make_url <- function(parsed_date, parsed_product) {
   year <- format(parsed_date, '%Y')
   if (parsed_product$is_8_day) {
     ac_or_nac <- gsub('8 day ', '', parsed_product$product)
-    date_interval_string <- sapply(parsed_date, find_8d_interval,
-                                   product=parsed_product$product)
+    date_interval_string <- vapply(parsed_date, find_8d_interval,
+                                   product=parsed_product$product,
+                                   FUN.VALUE = 'a string')
     url <- paste0(baseurl, '8day/data/', year, '/',
                   'LERI_8day-', ac_or_nac, '_', date_interval_string,
                   '_', year, '.nc')
