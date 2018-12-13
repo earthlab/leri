@@ -1,5 +1,8 @@
 {
-  "@context": ["https://doi.org/10.5063/schema/codemeta-2.0", "http://schema.org"],
+  "@context": [
+    "https://doi.org/10.5063/schema/codemeta-2.0",
+    "http://schema.org"
+  ],
   "@type": "SoftwareSourceCode",
   "identifier": "leri",
   "description": "Easily access and work with Landscape Evaporative Response Index \n  (LERI) data from R. This package provides utilities for downloading LERI data \n  and reading it using the raster package. More info on LERI is \n  avaiable at <https://www.esrl.noaa.gov/psd/leri/>.",
@@ -48,6 +51,18 @@
   "softwareRequirements": [
     {
       "@type": "SoftwareApplication",
+      "identifier": "ncdf4",
+      "name": "ncdf4",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=ncdf4"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "rappdirs",
       "name": "rappdirs",
       "provider": {
@@ -71,7 +86,8 @@
       "sameAs": "https://CRAN.R-project.org/package=raster"
     }
   ],
-  "fileSize": "133.901KB",
+  "fileSize": "134.047KB",
   "contIntegration": [],
-  "developmentStatus": "https://www.repostatus.org/#wip"
+  "developmentStatus": "https://www.repostatus.org/#wip",
+  "readme": "https://github.com/earthlab/leri/blob/master/README.md"
 }
