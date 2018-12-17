@@ -4,6 +4,8 @@
 # leri: R package for the NOAA Landscape Evaporative Response Index
 
 [![CircleCI](https://circleci.com/gh/earthlab/leri/tree/master.svg?style=svg)](https://circleci.com/gh/earthlab/leri/tree/master)
+[![AppVeyor build
+status](https://ci.appveyor.com/api/projects/status/github/earthlab/leri?branch=master&svg=true)](https://ci.appveyor.com/project/earthlab/leri)
 [![Codecov](https://img.shields.io/codecov/c/github/earthlab/leri.svg)](https://codecov.io/gh/earthlab/leri)
 [![Project Status: WIP – Initial development is in progress, but there
 has not yet been a stable, usable release suitable for the
