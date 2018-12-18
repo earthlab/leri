@@ -5,7 +5,7 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "leri",
-  "description": "Easily access and work with Landscape Evaporative Response Index \n  (LERI) data from R. This package provides utilities for downloading LERI data \n  and reading it using the raster package. More info on LERI is \n  avaiable at <https://www.esrl.noaa.gov/psd/leri/>.",
+  "description": "Acquire and work with Landscape Evaporative Response Index \n  (LERI) data programmatically. This package provides utilities for downloading \n  and reading LERI raster data. More info on LERI is avaiable at \n  <https://www.esrl.noaa.gov/psd/leri/>.",
   "name": "leri: Access Landscape Evaporative Response Index (LERI) Data",
   "codeRepository": "https://github.com/earthlab/leri",
   "issueTracker": "https://github.com/earthlab/leri/issues",
@@ -63,18 +63,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "rappdirs",
-      "name": "rappdirs",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=rappdirs"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "raster",
       "name": "raster",
       "provider": {
@@ -86,7 +74,7 @@
       "sameAs": "https://CRAN.R-project.org/package=raster"
     }
   ],
-  "fileSize": "134.047KB",
+  "fileSize": "134.07KB",
   "contIntegration": [],
   "developmentStatus": "https://www.repostatus.org/#wip",
   "readme": "https://github.com/earthlab/leri/blob/master/README.md"

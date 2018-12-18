@@ -97,11 +97,9 @@ test_that("Single date returns a RasterLayer", {
 
 test_that("Multiple dates return a RasterBrick", {
   skip_on_cran()
-  r <- get_leri(date = c('2018-01-04', '2018-02-13'), product = '1 month',
-                dir = '.')
+  r <- get_leri(date = c('2018-01-04', '2018-02-13'), product = '1 month')
   expect_is(r, 'RasterBrick')
   expect_equal(raster::nlayers(r), 2)
   expected_names <- c("LERI_01mn_20180101.nc", "LERI_01mn_20180201.nc")
   expect_equal(names(r), expected_names)
-  unlink(list.files(pattern = ".nc"))
 })
