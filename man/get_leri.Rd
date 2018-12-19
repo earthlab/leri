@@ -4,7 +4,7 @@
 \alias{get_leri}
 \title{Get LERI data}
 \usage{
-get_leri(date, product, dir = NA, overwrite = FALSE)
+get_leri(date, product, dir = tempdir(), overwrite = FALSE)
 }
 \arguments{
 \item{date}{An object of class Date or a character string formatted as
@@ -20,7 +20,7 @@ are not supported, and will be rounded to the nearest integer (e.g., "1.1
 month" will be converted to "1 month").}
 
 \item{dir}{Directory to for downloaded LERI data. By default this will be
-your cache directory. This should be a file path specified as a string.}
+a temporary directory. This should be a file path specified as a string.}
 
 \item{overwrite}{Boolean to indicate whether to overwrite LERI data that
 already exist locally in \code{dir}. Defaults to FALSE.}

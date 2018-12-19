@@ -39,7 +39,7 @@
 #' are not supported, and will be rounded to the nearest integer (e.g., "1.1
 #' month" will be converted to "1 month").
 #' @param dir Directory to for downloaded LERI data. By default this will be
-#' your cache directory. This should be a file path specified as a string.
+#' a temporary directory. This should be a file path specified as a string.
 #' @param overwrite Boolean to indicate whether to overwrite LERI data that
 #' already exist locally in \code{dir}. Defaults to FALSE.
 #' @return A Raster* object containing LERI data. Each layer in this object
@@ -52,7 +52,7 @@
 #' Raster* object returned by \code{get_leri} are available as layer names.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' get_leri(date = "2018-01-01", product = "1 month")
 #' get_leri(date = "2018-08-13", product = "8 day ac")
 #'
@@ -74,18 +74,15 @@
 #' \url{http://onlinelibrary.wiley.com/doi/10.1111/jawr.12057/full}
 #'
 #' @export
-get_leri <- function(date, product, dir = NA, overwrite = FALSE) {
+get_leri <- function(date, product, dir = tempdir(), overwrite = FALSE) {
   parsed_product <- parse_product(product)
   parsed_date <- parse_date(date, parsed_product)
-  if (is.na(dir)) {
-    dir <- rappdirs::user_cache_dir()
-  }
   url <- make_url(parsed_date, parsed_product)
   fnames <- basename(url)
   local_path <- file.path(dir, fnames)
   for (i in seq_along(url)) {
     if (overwrite | !file.exists(local_path[i])) {
-      utils::download.file(url[i], local_path[i], )
+      utils::download.file(url[i], local_path[i])
     }
   }
   r <- raster::stack(local_path)
