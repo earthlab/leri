@@ -66,7 +66,7 @@ accumulated 8-day data differ can be found at
 \url{https://www.esrl.noaa.gov/psd/leri/}.
 }
 \examples{
-\dontrun{
+\donttest{
 get_leri(date = "2018-01-01", product = "1 month")
 get_leri(date = "2018-08-13", product = "8 day ac")
 
