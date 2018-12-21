@@ -31,7 +31,7 @@ timescales:
 
   - 1, 3, 7, and 12 month
   - 8 day accumulated or non-accumulated during the growing season
-    (April - Oct.)
+    (April - October)
 
 If we were interested in medium term drought, we could get 3 month
 timescale LERI data for a particular date as follows:
