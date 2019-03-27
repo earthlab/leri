@@ -23,7 +23,6 @@ test_script:
 
 environment:
   USE_RTOOLS: true
-  PKGTYPE: source
 
 on_failure:
   - 7z a failure.zip *.Rcheck\*
