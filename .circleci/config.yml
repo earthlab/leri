@@ -15,10 +15,11 @@ jobs:
           command: |
             R -e "devtools::install_deps(dependencies = TRUE)"
             R -e "devtools::install_github('mangothecat/goodpractice')"
+            R -e "devtools::install_github('r-lib/testthat')"
             R -e "install.packages('DT')"
       - run:
           command: |
-            R -e "devtools::check(cran = FALSE, args = c('--run-donttest'))"
+            R -e "devtools::check(cran = FALSE)"
       - save_cache:
           key: deps1-{{ .Branch }}-{{ checksum "DESCRIPTION" }}-{{ checksum ".circleci/config.yml" }}
           paths:
