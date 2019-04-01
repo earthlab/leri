@@ -67,12 +67,8 @@ accumulated 8-day data differ can be found at
 }
 \examples{
 \donttest{
+# this may take a while, as it downloads ~72 MB
 get_leri(date = "2018-01-01", product = "1 month")
-get_leri(date = "2018-08-13", product = "8 day ac")
-
-# multi-day example that will return a one-layer raster
-r <- get_leri(date = c("2018-08-13", "2018-08-14"), product = "8 day nac")
-names(r) # has one element (the layer covers August 13 to August 20)
 
 # multi-day example that returns a two-layer raster
 r <- get_leri(date = c("2018-08-12", "2018-08-13"), product = "8 day nac")

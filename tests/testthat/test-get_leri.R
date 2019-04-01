@@ -88,6 +88,7 @@ test_that("make_url returns multiple urls when needed", {
 
 test_that("Single date returns a RasterLayer", {
   skip_on_cran()
+  skip_on_ci()
   r <- get_leri(date = "2018-10-31", product = '8 day nac', dir = ".")
   expect_is(r, 'RasterLayer')
   expect_equal(raster::nlayers(r), 1)
@@ -97,6 +98,7 @@ test_that("Single date returns a RasterLayer", {
 
 test_that("Multiple dates return a RasterBrick", {
   skip_on_cran()
+  skip_on_ci()
   r <- get_leri(date = c('2018-01-04', '2018-02-13'), product = '1 month')
   expect_is(r, 'RasterBrick')
   expect_equal(raster::nlayers(r), 2)
