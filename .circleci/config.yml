@@ -6,11 +6,6 @@ jobs:
       - image: rocker/geospatial:latest
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - deps1-{{ .Branch }}-{{ checksum "DESCRIPTION" }}-{{ checksum ".circleci/config.yml" }}
-            - deps1-{{ .Branch }}
-            - deps1-
       - run:
           command: |
             R -e "devtools::install_deps(dependencies = TRUE)"
@@ -20,10 +15,6 @@ jobs:
       - run:
           command: |
             R -e "devtools::check(cran = FALSE)"
-      - save_cache:
-          key: deps1-{{ .Branch }}-{{ checksum "DESCRIPTION" }}-{{ checksum ".circleci/config.yml" }}
-          paths:
-            - "/usr/local/lib/R/site-library"
       - run:
           no_output_timeout: 20m
           command: |
