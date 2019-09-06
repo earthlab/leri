@@ -5,19 +5,19 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "leri",
-  "description": "Acquire and work with Landscape Evaporative Response Index \n  (LERI) data programmatically. This package provides utilities for downloading \n  and reading LERI raster data. More info on LERI is avaiable at \n  <https://www.esrl.noaa.gov/psd/leri/>.",
-  "name": "leri: Access Landscape Evaporative Response Index (LERI) Data",
+  "description": "Finds and downloads Landscape Evaporative Response\n    Index (LERI) data, then reads the data into 'R' using the 'raster'\n    package. The LERI product measures anomalies in actual\n    evapotranspiration, to support drought monitoring and early warning\n    systems. More info on LERI is available at\n    <https://www.esrl.noaa.gov/psd/leri/>.",
+  "name": "leri: Access Landscape Evaporative Response Index Raster Data",
   "codeRepository": "https://github.com/earthlab/leri",
   "issueTracker": "https://github.com/earthlab/leri/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.0.0.9000",
+  "version": "0.0.1",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.5.1",
+    "version": "3.6.1",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.5.1 (2018-07-02)",
+  "runtimePlatform": "R version 3.6.1 (2019-07-05)",
   "author": [
     {
       "@type": "Person",
@@ -160,8 +160,12 @@
       "sameAs": "https://CRAN.R-project.org/package=raster"
     }
   ],
-  "fileSize": "397.126KB",
+  "fileSize": "397.265KB",
   "contIntegration": [],
   "developmentStatus": "https://www.repostatus.org/#wip",
-  "readme": "https://github.com/earthlab/leri/blob/master/README.md"
+  "readme": "https://github.com/earthlab/leri/blob/master/README.md",
+  "contributor": {},
+  "copyrightHolder": {},
+  "funder": {},
+  "releaseNotes": "https://github.com/earthlab/leri/blob/master/NEWS.md"
 }
