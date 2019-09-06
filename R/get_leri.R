@@ -71,6 +71,7 @@
 #'
 #' @export
 get_leri <- function(date, product, dir = tempdir(), overwrite = FALSE) {
+  ncdf4::nc_version() # verifies ncdf4 installation
   parsed_product <- parse_product(product)
   parsed_date <- parse_date(date, parsed_product)
   url <- make_url(parsed_date, parsed_product)
