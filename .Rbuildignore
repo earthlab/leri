@@ -6,3 +6,6 @@
 ^leri\.Rproj$
 ^\.Rproj\.user$
 .circleci
+^cran-comments\.md$
+^CRAN-RELEASE$
+^revdep$
