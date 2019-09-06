@@ -7,8 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Get LERI data over a region of interest and save a GeoTIFF • leri</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Get LERI data over a region of interest and save a GeoTIFF">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
@@ -30,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">leri</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
       </span>
     </div>
 
@@ -38,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -57,11 +58,14 @@
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/earthlab/leri">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -74,13 +78,14 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Get LERI data over a region of interest and save a GeoTIFF</h1>
                         <h4 class="author">Maxwell B. Joseph</h4>
             
-            <h4 class="date">2018-12-21</h4>
+            <h4 class="date">2019-09-06</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/earthlab/leri/blob/master/vignettes/leri-roi-tutorial.Rmd"><code>vignettes/leri-roi-tutorial.Rmd</code></a></small>
       <div class="hidden name"><code>leri-roi-tutorial.Rmd</code></div>
@@ -101,111 +106,111 @@
 <h2 class="hasAnchor">
 <a href="#defining-a-region-of-interest" class="anchor"></a>Defining a region of interest</h2>
 <p>By default, the leri package returns data for the continental United States, southern parks of Canada, and northern parts of Mexico. But, you may only be interested in a region of interest, as defined by a shapefile. Here, you will load a shapefile for the state of North Carolina that is distributed by default with the <a href="https://cran.r-project.org/package=sf">sf</a> package.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(sf)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="co">#&gt; Linking to GEOS 3.6.2, GDAL 2.2.3, PROJ 4.9.3</span></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(raster)</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co">#&gt; Loading required package: sp</span></a>
-<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(viridis)</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="co">#&gt; Loading required package: viridisLite</span></a>
-<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(leri)</a>
-<a class="sourceLine" id="cb1-8" data-line-number="8">roi &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_read">st_read</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="st">"shape/nc.shp"</span>, <span class="dt">package=</span><span class="st">"sf"</span>))</a>
-<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="co">#&gt; Reading layer `nc' from data source `/home/max/R/x86_64-pc-linux-gnu-library/3.5/sf/shape/nc.shp' using driver `ESRI Shapefile'</span></a>
-<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="co">#&gt; Simple feature collection with 100 features and 14 fields</span></a>
-<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="co">#&gt; geometry type:  MULTIPOLYGON</span></a>
-<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="co">#&gt; dimension:      XY</span></a>
-<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="co">#&gt; bbox:           xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965</span></a>
-<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="co">#&gt; epsg (SRID):    4267</span></a>
-<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="co">#&gt; proj4string:    +proj=longlat +datum=NAD27 +no_defs</span></a></code></pre></div>
-<p>If you are using a different shapefile, replace <code><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file("shape/nc.shp", package="sf")</a></code> with its file path, e.g., <code><a href="https://www.rdocumentation.org/packages/sf/topics/st_read">st_read("path/to/file.shp")</a></code>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(sf)</a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="co">#&gt; Linking to GEOS 3.6.2, GDAL 2.2.3, PROJ 4.9.3</span></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(raster)</a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="co">#&gt; Loading required package: sp</span></a>
+<a class="sourceLine" id="cb1-5" title="5"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(viridis)</a>
+<a class="sourceLine" id="cb1-6" title="6"><span class="co">#&gt; Loading required package: viridisLite</span></a>
+<a class="sourceLine" id="cb1-7" title="7"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(leri)</a>
+<a class="sourceLine" id="cb1-8" title="8">roi &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/sf/man/st_read.html">st_read</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"shape/nc.shp"</span>, <span class="dt">package=</span><span class="st">"sf"</span>))</a>
+<a class="sourceLine" id="cb1-9" title="9"><span class="co">#&gt; Reading layer `nc' from data source `/home/max/R/x86_64-pc-linux-gnu-library/3.6/sf/shape/nc.shp' using driver `ESRI Shapefile'</span></a>
+<a class="sourceLine" id="cb1-10" title="10"><span class="co">#&gt; Simple feature collection with 100 features and 14 fields</span></a>
+<a class="sourceLine" id="cb1-11" title="11"><span class="co">#&gt; geometry type:  MULTIPOLYGON</span></a>
+<a class="sourceLine" id="cb1-12" title="12"><span class="co">#&gt; dimension:      XY</span></a>
+<a class="sourceLine" id="cb1-13" title="13"><span class="co">#&gt; bbox:           xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965</span></a>
+<a class="sourceLine" id="cb1-14" title="14"><span class="co">#&gt; epsg (SRID):    4267</span></a>
+<a class="sourceLine" id="cb1-15" title="15"><span class="co">#&gt; proj4string:    +proj=longlat +datum=NAD27 +no_defs</span></a></code></pre></div>
+<p>If you are using a different shapefile, replace <code><a href="https://rdrr.io/r/base/system.file.html">system.file("shape/nc.shp", package="sf")</a></code> with its file path, e.g., <code><a href="https://rdrr.io/pkg/sf/man/st_read.html">st_read("path/to/file.shp")</a></code>.</p>
 <p>The <code>roi</code> object contains multiple columns of data, and a <code>geometry</code> column that contains spatial information on the region of interest, which in this case consists of multiple counties.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">roi</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co">#&gt; Simple feature collection with 100 features and 14 fields</span></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#&gt; geometry type:  MULTIPOLYGON</span></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#&gt; dimension:      XY</span></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt; bbox:           xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965</span></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt; epsg (SRID):    4267</span></a>
-<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt; proj4string:    +proj=longlat +datum=NAD27 +no_defs</span></a>
-<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt; First 10 features:</span></a>
-<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt;     AREA PERIMETER CNTY_ CNTY_ID        NAME  FIPS FIPSNO CRESS_ID BIR74</span></a>
-<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">#&gt; 1  0.114     1.442  1825    1825        Ashe 37009  37009        5  1091</span></a>
-<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt; 2  0.061     1.231  1827    1827   Alleghany 37005  37005        3   487</span></a>
-<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt; 3  0.143     1.630  1828    1828       Surry 37171  37171       86  3188</span></a>
-<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt; 4  0.070     2.968  1831    1831   Currituck 37053  37053       27   508</span></a>
-<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt; 5  0.153     2.206  1832    1832 Northampton 37131  37131       66  1421</span></a>
-<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt; 6  0.097     1.670  1833    1833    Hertford 37091  37091       46  1452</span></a>
-<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="co">#&gt; 7  0.062     1.547  1834    1834      Camden 37029  37029       15   286</span></a>
-<a class="sourceLine" id="cb2-17" data-line-number="17"><span class="co">#&gt; 8  0.091     1.284  1835    1835       Gates 37073  37073       37   420</span></a>
-<a class="sourceLine" id="cb2-18" data-line-number="18"><span class="co">#&gt; 9  0.118     1.421  1836    1836      Warren 37185  37185       93   968</span></a>
-<a class="sourceLine" id="cb2-19" data-line-number="19"><span class="co">#&gt; 10 0.124     1.428  1837    1837      Stokes 37169  37169       85  1612</span></a>
-<a class="sourceLine" id="cb2-20" data-line-number="20"><span class="co">#&gt;    SID74 NWBIR74 BIR79 SID79 NWBIR79                       geometry</span></a>
-<a class="sourceLine" id="cb2-21" data-line-number="21"><span class="co">#&gt; 1      1      10  1364     0      19 MULTIPOLYGON (((-81.47276 3...</span></a>
-<a class="sourceLine" id="cb2-22" data-line-number="22"><span class="co">#&gt; 2      0      10   542     3      12 MULTIPOLYGON (((-81.23989 3...</span></a>
-<a class="sourceLine" id="cb2-23" data-line-number="23"><span class="co">#&gt; 3      5     208  3616     6     260 MULTIPOLYGON (((-80.45634 3...</span></a>
-<a class="sourceLine" id="cb2-24" data-line-number="24"><span class="co">#&gt; 4      1     123   830     2     145 MULTIPOLYGON (((-76.00897 3...</span></a>
-<a class="sourceLine" id="cb2-25" data-line-number="25"><span class="co">#&gt; 5      9    1066  1606     3    1197 MULTIPOLYGON (((-77.21767 3...</span></a>
-<a class="sourceLine" id="cb2-26" data-line-number="26"><span class="co">#&gt; 6      7     954  1838     5    1237 MULTIPOLYGON (((-76.74506 3...</span></a>
-<a class="sourceLine" id="cb2-27" data-line-number="27"><span class="co">#&gt; 7      0     115   350     2     139 MULTIPOLYGON (((-76.00897 3...</span></a>
-<a class="sourceLine" id="cb2-28" data-line-number="28"><span class="co">#&gt; 8      0     254   594     2     371 MULTIPOLYGON (((-76.56251 3...</span></a>
-<a class="sourceLine" id="cb2-29" data-line-number="29"><span class="co">#&gt; 9      4     748  1190     2     844 MULTIPOLYGON (((-78.30876 3...</span></a>
-<a class="sourceLine" id="cb2-30" data-line-number="30"><span class="co">#&gt; 10     1     160  2038     5     176 MULTIPOLYGON (((-80.02567 3...</span></a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">roi</a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="co">#&gt; Simple feature collection with 100 features and 14 fields</span></a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="co">#&gt; geometry type:  MULTIPOLYGON</span></a>
+<a class="sourceLine" id="cb2-4" title="4"><span class="co">#&gt; dimension:      XY</span></a>
+<a class="sourceLine" id="cb2-5" title="5"><span class="co">#&gt; bbox:           xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965</span></a>
+<a class="sourceLine" id="cb2-6" title="6"><span class="co">#&gt; epsg (SRID):    4267</span></a>
+<a class="sourceLine" id="cb2-7" title="7"><span class="co">#&gt; proj4string:    +proj=longlat +datum=NAD27 +no_defs</span></a>
+<a class="sourceLine" id="cb2-8" title="8"><span class="co">#&gt; First 10 features:</span></a>
+<a class="sourceLine" id="cb2-9" title="9"><span class="co">#&gt;     AREA PERIMETER CNTY_ CNTY_ID        NAME  FIPS FIPSNO CRESS_ID BIR74</span></a>
+<a class="sourceLine" id="cb2-10" title="10"><span class="co">#&gt; 1  0.114     1.442  1825    1825        Ashe 37009  37009        5  1091</span></a>
+<a class="sourceLine" id="cb2-11" title="11"><span class="co">#&gt; 2  0.061     1.231  1827    1827   Alleghany 37005  37005        3   487</span></a>
+<a class="sourceLine" id="cb2-12" title="12"><span class="co">#&gt; 3  0.143     1.630  1828    1828       Surry 37171  37171       86  3188</span></a>
+<a class="sourceLine" id="cb2-13" title="13"><span class="co">#&gt; 4  0.070     2.968  1831    1831   Currituck 37053  37053       27   508</span></a>
+<a class="sourceLine" id="cb2-14" title="14"><span class="co">#&gt; 5  0.153     2.206  1832    1832 Northampton 37131  37131       66  1421</span></a>
+<a class="sourceLine" id="cb2-15" title="15"><span class="co">#&gt; 6  0.097     1.670  1833    1833    Hertford 37091  37091       46  1452</span></a>
+<a class="sourceLine" id="cb2-16" title="16"><span class="co">#&gt; 7  0.062     1.547  1834    1834      Camden 37029  37029       15   286</span></a>
+<a class="sourceLine" id="cb2-17" title="17"><span class="co">#&gt; 8  0.091     1.284  1835    1835       Gates 37073  37073       37   420</span></a>
+<a class="sourceLine" id="cb2-18" title="18"><span class="co">#&gt; 9  0.118     1.421  1836    1836      Warren 37185  37185       93   968</span></a>
+<a class="sourceLine" id="cb2-19" title="19"><span class="co">#&gt; 10 0.124     1.428  1837    1837      Stokes 37169  37169       85  1612</span></a>
+<a class="sourceLine" id="cb2-20" title="20"><span class="co">#&gt;    SID74 NWBIR74 BIR79 SID79 NWBIR79                       geometry</span></a>
+<a class="sourceLine" id="cb2-21" title="21"><span class="co">#&gt; 1      1      10  1364     0      19 MULTIPOLYGON (((-81.47276 3...</span></a>
+<a class="sourceLine" id="cb2-22" title="22"><span class="co">#&gt; 2      0      10   542     3      12 MULTIPOLYGON (((-81.23989 3...</span></a>
+<a class="sourceLine" id="cb2-23" title="23"><span class="co">#&gt; 3      5     208  3616     6     260 MULTIPOLYGON (((-80.45634 3...</span></a>
+<a class="sourceLine" id="cb2-24" title="24"><span class="co">#&gt; 4      1     123   830     2     145 MULTIPOLYGON (((-76.00897 3...</span></a>
+<a class="sourceLine" id="cb2-25" title="25"><span class="co">#&gt; 5      9    1066  1606     3    1197 MULTIPOLYGON (((-77.21767 3...</span></a>
+<a class="sourceLine" id="cb2-26" title="26"><span class="co">#&gt; 6      7     954  1838     5    1237 MULTIPOLYGON (((-76.74506 3...</span></a>
+<a class="sourceLine" id="cb2-27" title="27"><span class="co">#&gt; 7      0     115   350     2     139 MULTIPOLYGON (((-76.00897 3...</span></a>
+<a class="sourceLine" id="cb2-28" title="28"><span class="co">#&gt; 8      0     254   594     2     371 MULTIPOLYGON (((-76.56251 3...</span></a>
+<a class="sourceLine" id="cb2-29" title="29"><span class="co">#&gt; 9      4     748  1190     2     844 MULTIPOLYGON (((-78.30876 3...</span></a>
+<a class="sourceLine" id="cb2-30" title="30"><span class="co">#&gt; 10     1     160  2038     5     176 MULTIPOLYGON (((-80.02567 3...</span></a></code></pre></div>
 <p>Because you don’t necessarily care about each county, but rather you want the entire state (including all counties) you can use a spatial union to join data from all counties:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">roi &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/geos_combine">st_union</a></span>(roi)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">roi</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt; Geometry set for 1 feature </span></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt; geometry type:  MULTIPOLYGON</span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; dimension:      XY</span></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt; bbox:           xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965</span></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt; epsg (SRID):    4267</span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt; proj4string:    +proj=longlat +datum=NAD27 +no_defs</span></a>
-<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; MULTIPOLYGON (((-76.54427 34.58783, -76.55515 3...</span></a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">roi &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/sf/man/geos_combine.html">st_union</a></span>(roi)</a>
+<a class="sourceLine" id="cb3-2" title="2">roi</a>
+<a class="sourceLine" id="cb3-3" title="3"><span class="co">#&gt; Geometry set for 1 feature </span></a>
+<a class="sourceLine" id="cb3-4" title="4"><span class="co">#&gt; geometry type:  MULTIPOLYGON</span></a>
+<a class="sourceLine" id="cb3-5" title="5"><span class="co">#&gt; dimension:      XY</span></a>
+<a class="sourceLine" id="cb3-6" title="6"><span class="co">#&gt; bbox:           xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965</span></a>
+<a class="sourceLine" id="cb3-7" title="7"><span class="co">#&gt; epsg (SRID):    4267</span></a>
+<a class="sourceLine" id="cb3-8" title="8"><span class="co">#&gt; proj4string:    +proj=longlat +datum=NAD27 +no_defs</span></a>
+<a class="sourceLine" id="cb3-9" title="9"><span class="co">#&gt; MULTIPOLYGON (((-76.54427 34.58783, -76.55515 3...</span></a></code></pre></div>
 </div>
 <div id="acquiring-leri-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#acquiring-leri-data" class="anchor"></a>Acquiring LERI data</h2>
 <p>To acquire LERI data, you can use the <code><a href="../reference/get_leri.html">get_leri()</a></code> function. You will fetch the 8 day accumulated timescale data for the week of August 13, 2018:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">leri_raster &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_leri.html">get_leri</a></span>(<span class="dt">date =</span> <span class="st">"2018-08-13"</span>, <span class="dt">product =</span> <span class="st">"8 day ac"</span>)</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co">#&gt; Loading required namespace: ncdf4</span></a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">leri_raster &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_leri.html">get_leri</a></span>(<span class="dt">date =</span> <span class="st">"2018-08-13"</span>, <span class="dt">product =</span> <span class="st">"8 day ac"</span>)</a></code></pre></div>
 <p>The <code>leri_raster</code> object is a <code>RasterLayer</code>, and you can see information on the spatial extent, resolution, and coordinate reference system by printing the object:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">leri_raster</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">#&gt; class       : RasterLayer </span></a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt; dimensions  : 2834, 6612, 18738408  (nrow, ncol, ncell)</span></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt; resolution  : 0.009, 0.009  (x, y)</span></a>
-<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt; extent      : -126, -66.492, 23.994, 49.5  (xmin, xmax, ymin, ymax)</span></a>
-<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt; coord. ref. : +init=epsg:4326 +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 </span></a>
-<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt; data source : in memory</span></a>
-<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt; names       : LERI_8day.ac_Apr01.Aug20_2018.nc </span></a>
-<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt; values      : 3.448276, 96.55172  (min, max)</span></a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">leri_raster</a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="co">#&gt; class      : RasterLayer </span></a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="co">#&gt; dimensions : 2834, 6612, 18738408  (nrow, ncol, ncell)</span></a>
+<a class="sourceLine" id="cb5-4" title="4"><span class="co">#&gt; resolution : 0.009, 0.009  (x, y)</span></a>
+<a class="sourceLine" id="cb5-5" title="5"><span class="co">#&gt; extent     : -126, -66.492, 23.994, 49.5  (xmin, xmax, ymin, ymax)</span></a>
+<a class="sourceLine" id="cb5-6" title="6"><span class="co">#&gt; crs        : +init=epsg:4326 +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 </span></a>
+<a class="sourceLine" id="cb5-7" title="7"><span class="co">#&gt; source     : memory</span></a>
+<a class="sourceLine" id="cb5-8" title="8"><span class="co">#&gt; names      : LERI_8day.ac_Apr01.Aug20_2018.nc </span></a>
+<a class="sourceLine" id="cb5-9" title="9"><span class="co">#&gt; values     : 3.278688, 96.72131  (min, max)</span></a></code></pre></div>
 <p>Plot the data with a custom color palette to see what the data look like:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(leri_raster, <span class="dt">col =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/viridis/topics/reexports">cividis</a></span>(<span class="dv">255</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw"><a href="https://rdrr.io/pkg/sf/man/plot.html">plot</a></span>(leri_raster, <span class="dt">col =</span> <span class="kw"><a href="https://rdrr.io/pkg/viridis/man/reexports.html">cividis</a></span>(<span class="dv">255</span>))</a></code></pre></div>
 <p><img src="leri-roi-tutorial_files/figure-html/plot-leri-conus-1.png" width="768"></p>
 </div>
 <div id="masking-to-the-region-of-interest" class="section level2">
 <h2 class="hasAnchor">
 <a href="#masking-to-the-region-of-interest" class="anchor"></a>Masking to the region of interest</h2>
 <p>Now you want to subset or mask the LERI data to the region of interest. First, you need to ensure that the raster data and the polygon for the region of interest have the same coordinate reference system.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">roi_reprojected &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_transform">st_transform</a></span>(roi, <span class="dt">crs =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/projection">projection</a></span>(leri_raster))</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">roi_reprojected &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/sf/man/st_transform.html">st_transform</a></span>(roi, <span class="dt">crs =</span> <span class="kw"><a href="https://rdrr.io/pkg/raster/man/projection.html">projection</a></span>(leri_raster))</a></code></pre></div>
 <p>Now, graphically verify that they align as expected:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(leri_raster, <span class="dt">col =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/viridis/topics/reexports">cividis</a></span>(<span class="dv">255</span>))</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(roi_reprojected, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw"><a href="https://rdrr.io/pkg/sf/man/plot.html">plot</a></span>(leri_raster, <span class="dt">col =</span> <span class="kw"><a href="https://rdrr.io/pkg/viridis/man/reexports.html">cividis</a></span>(<span class="dv">255</span>))</a>
+<a class="sourceLine" id="cb8-2" title="2"><span class="kw"><a href="https://rdrr.io/pkg/sf/man/plot.html">plot</a></span>(roi_reprojected, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p><img src="leri-roi-tutorial_files/figure-html/plot-leri-with-shp-1.png" width="768"></p>
 <p>Now, you can crop the LERI data to match extents with the region of interest, then mask the raster set all values outside of the region of interest to <code>NA</code>. Because the raster package requires sp objects, rather than sf objects, you will coerce our roi to a sp object first.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">roi_sp &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/coerce-methods">as</a></span>(roi_reprojected, <span class="st">'Spatial'</span>)</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2">cropped_leri &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/crop">crop</a></span>(leri_raster, roi_sp)</a>
-<a class="sourceLine" id="cb9-3" data-line-number="3">masked_leri &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/mask">mask</a></span>(cropped_leri, roi_sp)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">roi_sp &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/sf/man/coerce-methods.html">as</a></span>(roi_reprojected, <span class="st">'Spatial'</span>)</a>
+<a class="sourceLine" id="cb9-2" title="2">cropped_leri &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/raster/man/crop.html">crop</a></span>(leri_raster, roi_sp)</a>
+<a class="sourceLine" id="cb9-3" title="3">masked_leri &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/raster/man/mask.html">mask</a></span>(cropped_leri, roi_sp)</a></code></pre></div>
 <p>You can plot the masked raster along with the ROI to confirm:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(masked_leri, <span class="dt">col =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/viridis/topics/reexports">cividis</a></span>(<span class="dv">255</span>))</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(roi_sp, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw"><a href="https://rdrr.io/pkg/sf/man/plot.html">plot</a></span>(masked_leri, <span class="dt">col =</span> <span class="kw"><a href="https://rdrr.io/pkg/viridis/man/reexports.html">cividis</a></span>(<span class="dv">255</span>))</a>
+<a class="sourceLine" id="cb10-2" title="2"><span class="kw"><a href="https://rdrr.io/pkg/sf/man/plot.html">plot</a></span>(roi_sp, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p><img src="leri-roi-tutorial_files/figure-html/unnamed-chunk-2-1.png" width="768"></p>
 </div>
 <div id="saving-geotiff-output" class="section level2">
 <h2 class="hasAnchor">
 <a href="#saving-geotiff-output" class="anchor"></a>Saving GeoTIFF output</h2>
 <p>To write a GeoTIFF file of our <code>masked_leri</code> object, you can use <code>writeRaster</code>:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/writeRaster">writeRaster</a></span>(masked_leri, <span class="st">'leri-over-roi.tif'</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw"><a href="https://rdrr.io/pkg/raster/man/writeRaster.html">writeRaster</a></span>(masked_leri, <span class="st">'leri-over-roi.tif'</span>)</a></code></pre></div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+
         <div id="tocnav">
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
@@ -221,17 +226,20 @@
 </div>
 
 
+
       <footer><div class="copyright">
   <p>Developed by Max Joseph.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>
