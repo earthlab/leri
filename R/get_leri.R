@@ -21,7 +21,7 @@
 #' The values in LERI rasters are percentiles for estimates of actual
 #' evapotranspiration computed by the operational Simplified Surface Energy
 #' Balance (SEEBop) model, which uses remotely sensed MODIS thermal imagery
-#' with climatological reference evapotranspiration as descriped in Senay et
+#' with climatological reference evapotranspiration as described in Senay et
 #' al., 2013.
 #'
 #' More information about how the monthly, non-accumulated 8-day, and
