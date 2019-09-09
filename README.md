@@ -7,9 +7,10 @@
 [![AppVeyor build
 status](https://ci.appveyor.com/api/projects/status/github/earthlab/leri?branch=master&svg=true)](https://ci.appveyor.com/project/earthlab/leri)
 [![Codecov](https://img.shields.io/codecov/c/github/earthlab/leri.svg)](https://codecov.io/gh/earthlab/leri)
-[![Project Status: WIP – Initial development is in progress, but there
-has not yet been a stable, usable release suitable for the
-public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+[![Project Status: Active – The project has reached a stable, usable
+state and is being actively
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![DOI](https://zenodo.org/badge/160896497.svg)](https://zenodo.org/badge/latestdoi/160896497)
 
 The leri R package facilitates access to the NOAA [Landscape Evaporative
 Response Index](https://www.esrl.noaa.gov/psd/leri/) data product.
@@ -21,6 +22,12 @@ You can install the development version of leri with devtools:
 ``` r
 # install.packages("devtools")
 devtools::install_github("earthlab/leri")
+```
+
+Or, you can install the stable version from CRAN:
+
+``` r
+install.packages("leri")
 ```
 
 ## Example
