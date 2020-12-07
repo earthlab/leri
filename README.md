@@ -16,7 +16,7 @@ status](https://ci.appveyor.com/api/projects/status/github/earthlab/leri?branch=
 downloads](http://cranlogs.r-pkg.org/badges/leri)](https://github.com/metacran/cranlogs.app)
 
 The leri R package facilitates access to the NOAA [Landscape Evaporative
-Response Index](https://www.esrl.noaa.gov/psd/leri/) data product.
+Response Index](https://psl.noaa.gov/leri/) data product.
 
 ## Installation
 
@@ -39,8 +39,8 @@ The LERI product is available from the year 2000 to present at a 1 km
 spatial resolution over the continental United States, at the following
 timescales:
 
-  - 1, 3, 7, and 12 month
-  - 8 day accumulated or non-accumulated during the growing season
+-   1, 3, 7, and 12 month
+-   8 day accumulated or non-accumulated during the growing season
     (April - Oct.)
 
 If we were interested in medium term drought, we could get 3 month
@@ -49,16 +49,15 @@ timescale LERI data for a particular date as follows:
 ``` r
 library(leri)
 r <- get_leri(date = "2018-09-01", product = "3 month")
-#> Loading required namespace: ncdf4
 r
 #> class      : RasterLayer 
 #> dimensions : 2844, 6617, 18818748  (nrow, ncol, ncell)
 #> resolution : 0.009, 0.009  (x, y)
 #> extent     : -126.009, -66.456, 23.949, 49.545  (xmin, xmax, ymin, ymax)
-#> crs        : +init=epsg:4326 +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 
+#> crs        : +proj=longlat +datum=WGS84 +no_defs 
 #> source     : memory
 #> names      : LERI_03mn_20180901.nc 
-#> values     : 3.448276, 96.55172  (min, max)
+#> values     : 3.125, 96.87499  (min, max)
 ```
 
 The `get_leri` function will download the NetCDF files from the NOAA ftp
@@ -85,7 +84,7 @@ found here: <https://www.esrl.noaa.gov/psd/leri/>
 
 Other potentially useful resources include:
 
-  - [Poster about the LERI product
+-   [Poster about the LERI product
     (pdf)](https://www.esrl.noaa.gov/psd/leri/resources/pdf/LERI_Poster_CPASW-2018_Final.pdf)
-  - [Slides about the LERI product
+-   [Slides about the LERI product
     (pdf)](https://www.esrl.noaa.gov/psd/leri/resources/LERI_Rangwala_NIDIS-BrownBag_092418_PDF.pdf)

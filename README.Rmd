@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
 [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/leri)](https://github.com/metacran/cranlogs.app)
 
 The leri R package facilitates access to the NOAA [Landscape Evaporative 
-Response Index](https://www.esrl.noaa.gov/psd/leri/) data product.
+Response Index](https://psl.noaa.gov/leri/) data product.
 
 ## Installation
 

@@ -33,7 +33,7 @@ resolution over the continental United States, at the following timescales:
 - 8 day accumulated or non-accumulated from April - October
 
 More information on the LERI product is available on the 
-[NOAA LERI homepage](https://www.esrl.noaa.gov/psd/leri/).
+[NOAA LERI homepage](https://psl.noaa.gov/leri/).
 
 This vignette covers a common use case acquiring data over a region of interest
 defined by a shapefile, masking the LERI data to that region, and saving 
