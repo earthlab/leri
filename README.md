@@ -80,11 +80,11 @@ plot(r, col = cividis(10, direction = -1),
 ## LERI Resources
 
 More information on the creation and recommended usage for LERI can be
-found here: <https://www.esrl.noaa.gov/psd/leri/>
+found here: <https://psl.noaa.gov/leri/>
 
 Other potentially useful resources include:
 
 -   [Poster about the LERI product
-    (pdf)](https://www.esrl.noaa.gov/psd/leri/resources/pdf/LERI_Poster_CPASW-2018_Final.pdf)
+    (pdf)](https://psl.noaa.gov/leri/resources/pdf/LERI_Poster_CPASW-2018_Final.pdf)
 -   [Slides about the LERI product
-    (pdf)](https://www.esrl.noaa.gov/psd/leri/resources/LERI_Rangwala_NIDIS-BrownBag_092418_PDF.pdf)
+    (pdf)](https://psl.noaa.gov/leri/resources/LERI_Rangwala_NIDIS-BrownBag_092418_PDF.pdf)

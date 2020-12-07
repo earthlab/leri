@@ -26,7 +26,7 @@
 #'
 #' More information about how the monthly, non-accumulated 8-day, and
 #' accumulated 8-day data differ can be found at
-#' \url{https://www.esrl.noaa.gov/psd/leri/}.
+#' \url{https://psl.noaa.gov/leri/}.
 #'
 #' @param date An object of class Date or a character string formatted as
 #' %Y-%m-%d (e.g., "2016-04-01") which specifies the date(s) for which data
